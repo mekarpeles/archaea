@@ -1,0 +1,56 @@
+$def with (users=[], projects=[], priorities=[])
+
+<form method="POST" action="/create" class="shadow addform">
+  <h2 class="addformhr">Add Ticket</h2>
+  <p>
+    <label>Title:</label>
+    <input type="text" name="title"
+	   style="position: relative; left: 65px; width: 500px; border: 1px solid #999;
+		  height: 25px; font-size: 16px; padding: 5px;"/>
+  </p>
+
+  $# Owner
+  <div>
+    <label>Assigned to:</label>
+    <span style="position: relative; left: 13px; margin-bottom: 15px;">
+      <select name="owner_id">
+	$for user in users:
+          <option value="$(loop.index - 1)">$user.username ($user.name)</option>
+      </select>
+      <a href="/adduser">Add a new user</a>
+    </span>
+  </div>
+  
+  $# Priority
+  <div>
+    <label>Priority:</label>
+    <select name="priority_id" style="position: relative; left: 47px;
+				      margin-bottom: 15px; margin-top: 15px;">
+      $for p in priorities:
+        <option value="$(loop.index - 1)">$p</option>
+    </select>
+  </div>
+
+  $# Projects
+  <div>
+    <label>Project(s):</label>
+    <span style="position: relative; left: 28px; margin-bottom: 25px;">
+      <select name="project_id">
+	$for p in projects:
+          <option value="$(loop.index - 1)">$p.name</option>
+      </select>
+      <a href="/addproject">Add a new project</a>
+    </span>
+  </div>
+
+  $# Desription
+  <div style="margin-top: 10px;">
+    <label style="float: left;">Desription:</label>
+    <textarea style="margin-left: 28px; top: 25px; height: 100px; width: 500px;" name="desc"></textarea>
+  </div>
+
+  <div>
+    <input style="margin-left: 109px; margin-bottom: 10px;" type="submit"
+	   value="publish task"/>
+  </div>
+</form>

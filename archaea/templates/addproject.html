@@ -1,0 +1,22 @@
+$def with (projects)
+  
+<form method="POST" action="/addproject" class="shadow addform">
+  <h2 class="addformhr">Add Project or Task Class</h2>
+  <p>Name <input type="text" name="name"/></p>
+  <input type="submit" value="Dig it!"/>
+</form>
+
+<h3>Existing Task Classes</h3>
+<table>
+  <thead>
+    <th>id</th>
+    <th>name</th>
+  </thead>
+  <tbody>
+    $for project in projects:
+      <tr>
+	<td>$loop.index</td>
+	<td>$project.name</td>
+      </tr>
+  </tbody>
+</table>

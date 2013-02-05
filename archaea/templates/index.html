@@ -1,0 +1,23 @@
+$def with (tasks, users, projects, priorities=[], statuses=[])
+
+<h3>Manifest <span class="h3-comment" style="color: #999;">(Tasks)</span></h3>
+
+$for task in tasks:
+  $if task.enabled:
+    <div class="task priority-$(task.priority_id)" style="font-size: 12px;">
+      <div class="taskli tid">T$(loop.index - 1)</div>
+      <div class="taskli status">$statuses[task.status_id]</div>
+      <div class="taskli owner">
+        <a href="mailto:$(users[task.owner_id].email)">$users[task.owner_id].username</a>
+      </div>
+    
+      <div class="taskli desc">
+        <a href="/t$(loop.index - 1)">$task.title</a>
+      </div>
+    
+      <div class="taskli projects">
+        <span class="project">$projects[0].name</span>
+      </div>
+      <div class="taskli date">$task.date</div>
+      <div style="clear: both;"></div>
+    </div>

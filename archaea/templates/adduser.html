@@ -1,0 +1,28 @@
+$def with (users)
+  
+<form method="POST" action="/adduser" class="addform">
+  <h2 class="addformhr">Add Archaea</h2>
+  <p>Name <input type="text" name="name"/></p>
+  <p>Username <input type="text" name="username"/></p>
+  <p>Email <input type="email" name="email"/></p>
+  <input type="submit" value="Dig it!"/>
+</form>
+
+<h3>Existing Excavators</h3>
+<table>
+  <thead>
+    <th>id</th>
+    <th>username</th>
+    <th>name</th>
+    <th>email</th>
+  </thead>
+  <tbody>
+    $for user in users:
+      <tr>
+	<td>$loop.index</td>
+	<td>$user.username</td>
+	<td>$user.name</td>
+	<td><a href="mailto:$user.email">$user.email</a></td>
+      </tr>
+  </tbody>
+</table>
